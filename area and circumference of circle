@@ -1,0 +1,34 @@
+package mca.lab;
+import java.util.Scanner;
+import java.io.*;
+
+class area{
+	
+	public void circle(double r)
+	{
+		
+		double areaofcircle=0;
+		areaofcircle=Math.PI*r*r;
+		System.out.println("area of the circle is ::"+areaofcircle);
+		
+	}
+	public void circomference(double r)
+	{
+		double circomference=0;
+		circomference=2*Math.PI*r;
+		System.out.println("circomference of area id ::"+circomference);
+	}
+}
+
+public class areaofcircle {
+
+	public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	System.out.println("Enter the radious of the circle");
+	double r=sc.nextDouble();
+	area a=new area();
+	a.circle(r);
+	a.circomference(r);
+	}
+
+}
