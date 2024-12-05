@@ -1,0 +1,194 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+class Node{
+    public:
+    
+    int data;
+    Node * Next;
+   // Node * prev;
+    
+    Node(int data)
+    {
+        this->data=data;
+        this->Next=NULL;
+       // this->prev=NULL;
+        
+    }
+};
+
+class SLL{
+    public:
+    Node * Head;
+    SLL()
+    {
+        this->Head=NULL;
+    }
+    void insertAtHead(int val)
+    {
+        Node *n=new Node(val);
+        n->Next=Head;
+    
+        Head=n;
+    }
+    void displaySll()
+    {
+        Node *temp=Head;
+         
+         while(temp!=NULL)
+         {
+             cout<<temp->data<<"->";
+             temp=temp->Next;
+        }
+        cout<<"NULL"<<endl;
+    }
+    void insertAtTail(int val)
+    {
+        Node *n=new Node(val);
+        if(Head==NULL)
+        {
+        Head=n;
+        }
+        else
+        {
+            Node * temp=Head;
+            while(temp->Next!=NULL)
+            {
+            temp=temp->Next;
+            }
+            temp->Next=n;
+        }
+    }
+    
+    int getSize()
+    {
+        int size=0;
+        Node * temp=Head;
+        if(temp!=NULL)
+        {
+            temp=temp->Next;
+            size++;
+        }
+        return size;
+    }
+    void insertAtPosition( int val,int pos){
+        Node *n=new Node(val);
+        //int i=0;
+        int size=getSize();
+        
+        if(pos>size|| pos<0)
+        {
+            cout<< "invalid pos entered!"<<endl;
+            
+        }
+        else if(pos==0)
+        {
+           // insertAtHead(val);
+           n->Next=Head;
+           Head=n;
+        }
+        else
+        {
+            Node * temp=Head;
+        
+        
+           // while(pos!=i)
+           while(--pos)
+            {
+               // i++;
+                temp=temp->Next;
+            
+            }
+             n->Next=temp->Next;
+            temp->Next=n;
+           
+            
+        }
+    }
+    
+    
+    void deleteAtHead(){
+        if (Head==NULL)
+        {
+            cout<<"linked list empty"<<endl;
+            return;
+        }
+        else
+        {
+              Node *temp=Head;
+              Head=Head->Next;
+              cout<<"deleted element  "<<temp->data<<endl;
+              delete temp;
+        }
+      }
+      
+      void deleteAtValue(int val)
+      {
+         if(Head==NULL)
+         {
+             cout<<"Linked list empty"<<endl;
+             return;
+        }
+        else if(Head->Next==NULL)
+        {
+          deleteAtHead();
+        }
+        
+         else
+         {
+             
+             Node * temp=Head;
+             /*
+             // unother mathod
+             
+             while(temp->Next->data!=val)
+             {
+                temp=temp->Next; 
+             }
+             Node * todelete=temp->Next;
+             temp->Next=temp->Next->Next;
+             delete todelete;
+             */
+             Node * prev=NULL;
+             
+             while(temp->data!=val)
+             {
+                 prev=temp;
+                 temp=temp->Next;
+             }
+             prev->Next=temp->Next;
+             cout<<"deleted element is  "<<temp->data<<endl;
+             delete temp;
+         }
+      }
+    
+    
+};
+
+
+int main() {
+    // Write C++ code here
+    //std::cout << "Try programiz.pro";
+SLL s;
+s.insertAtHead(10);
+s.insertAtHead(20);
+s.insertAtHead(30);
+s.displaySll();
+
+s.insertAtTail(90);
+s.insertAtTail(40);
+s.insertAtTail(50);
+s.displaySll();
+s.insertAtPosition(33,1);
+s.insertAtPosition(34,0);
+s.displaySll();
+s.deleteAtHead();
+s.displaySll();
+s.deleteAtValue(33);
+s.displaySll();
+//s.deleteAtValue(100);
+//s.displaySll();
+
+// return 0;
+}
