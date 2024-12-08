@@ -1,0 +1,84 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+# define N 10
+using  namespace std;
+
+class Queue{
+    public:
+  int * arr;
+  int front;
+  int back;
+  
+  Queue()
+  {
+      arr=new int[N];
+      front=-1;
+      back=-1;
+  }
+
+void Enqueue(int val)
+{
+    if(back==N-1)
+    {
+        cout<<"overflow"<<endl;
+        return;
+        
+    }
+    else
+    {
+        cout<<val << "inserted into the queue"<<endl;
+        arr[back++]=val;
+        
+        if(front ==-1)
+        {
+            front++;
+        }
+    }
+}
+
+void Dequeue()
+{
+    if(front==-1||front>back)
+    {
+        cout<<"under flow"<<endl;
+        return;
+    }
+    else
+    {
+        cout<<arr[front]<<"delete elements"<<endl;
+        front++;
+    }
+}
+int peek()
+{
+    if(front==-1||front>back)
+    {
+        cout<<"under flow"<<endl;
+        return -1;
+    }
+    else
+    {
+        return arr[front];
+    }
+}
+bool empty()
+{
+    if(front==-1||front>back)
+    {
+        return true;
+        
+    }
+    return false;
+}
+
+};
+int main()
+{
+    Queue q;
+    q.Enqueue(10);
+    q.Enqueue(20);
+    q.Enqueue(30);
+    q.peek();
+    q.Dequeue();
+    q.empty();
+}
