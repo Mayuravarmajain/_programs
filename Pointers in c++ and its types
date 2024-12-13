@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+//dangling pointer is point towards the non existing variable memory
+ int main()
+ {
+
+    int *ptrrr;           //wild pointer
+    int *ptrr=NULL;       //NUll pointer
+
+
+    //dangling pointer
+     int *ptr=(int*)malloc(5*sizeof(int));
+
+     cout<<ptr<<endl;
+
+     free(ptr);
+
+    // solve this dangling we use the ptr=NULL
+    ptr=NULL;
+
+
+    //double pointer
+    //double pointer will use in linked list
+
+    int i=50;
+    int * qtr=&i;
+    int **dptr=&ptr;
+
+    cout<<ptr<<endl;
+    cout<<dptr<<endl;
+
+     return 0;
+ }
+
