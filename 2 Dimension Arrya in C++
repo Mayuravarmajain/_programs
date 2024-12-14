@@ -1,0 +1,43 @@
+
+#include <iostream>
+using namespace std;
+
+
+int main() {
+
+    int row;
+    int col;
+   cout<<"Enter the number of rows"<<endl;
+   cin>>row;
+    cout<<"Enter the number of cols"<<endl;
+   cin>>col;
+
+   int arr[row][col];
+   //array elemnts taking from the user
+   cout <<" array elements are"<<endl;
+   for(int i=0;i<row;i++)
+   {
+       for(int j=0;j<col;j++)
+       {
+            cout<<"Element ["<<i<<"] ["<<j<<"]  ::  ";
+            cin>>arr[i][j];
+
+       }
+       cout<<endl;
+
+   }
+
+   //displaying the arrya element
+   cout<<"aray elements are"<<endl;
+   for(int i=0;i<row;i++)
+   {
+       for( int j=0;j<col;j++)
+       {
+           cout<<arr[i][j]<<" ";
+       }
+      cout<<endl;
+   }
+
+
+    return 0;
+}
