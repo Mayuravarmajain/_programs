@@ -1,0 +1,181 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node *next;
+    Node *prev;
+
+    Node(int data) {
+        this->data = data;
+        this->next = nullptr;
+        this->prev = nullptr;
+    }
+};
+//-----------------------------------------------------------
+//-----------------------------------------------------------
+class Dll {
+    Node *head;
+
+public:
+    Dll() {
+        head = nullptr;
+    }
+
+    void insertAtHead(int val) {
+        Node *n = new Node(val);
+        if (head != nullptr) {
+            n->next = head;
+            head->prev = n;
+        }
+        head = n;
+    }
+//--------------------------------------------------------
+    void insertAtTail(int val) {
+        Node *n = new Node(val);
+        if (head == nullptr) {
+            head = n;
+            return;
+        }
+        Node *temp = head;
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+        temp->next = n;
+        n->prev = temp;
+    }
+
+    int getsize() {
+        int Size = 0;
+        Node *temp = head;
+        while (temp != nullptr) {
+            temp = temp->next;
+            Size++;
+        }
+        return Size;
+    }
+//----------------------------------------------------
+    void insertAtpos(int val, int pos) {
+        int Size = getsize();
+        if (pos < 0 || pos > Size) {
+            cout << "Enter a correct position" << endl;
+            return;
+        }
+
+        if (pos == 0) {
+            insertAtHead(val);
+            return;
+        }
+
+        Node *n = new Node(val);
+        Node *temp = head;
+
+        while (--pos) {
+            temp = temp->next;
+        }
+
+        n->next = temp->next;
+        if (temp->next != nullptr) {
+            temp->next->prev = n;
+        }
+        temp->next = n;
+        n->prev = temp;
+    }
+//---------------------------------------------
+    void deleteAtHead() {
+        if (head == nullptr) {
+            cout << "List is empty" << endl;
+            return;
+        }
+
+        Node *todelete = head;
+        head = head->next;
+
+        if (head != nullptr) {
+            head->prev = nullptr;
+        }
+
+        delete todelete;
+    }
+//----------------------------------------------------
+    void deleteAtval(int val) {
+    if (head == nullptr) {
+        cout << "List is empty" << endl;
+        return;
+    }
+
+    Node *temp = head;
+
+    // Special case: if the node to delete is the head
+    if (head->data == val) {
+        deleteAtHead();
+        return;
+    }
+
+    // Traverse to find the node with the value
+    while (temp != nullptr && temp->data != val) {
+        temp = temp->next;
+    }
+
+    // If the value is not found
+    if (temp == nullptr) {
+        cout << "Value not found in the list" << endl;
+        return;
+    }
+
+    // Re-link the previous and next nodes
+    if (temp->prev != nullptr) {
+        temp->prev->next = temp->next;
+    }
+    if (temp->next != nullptr) {
+        temp->next->prev = temp->prev;
+    }
+
+    // Delete the node
+    delete temp;
+}
+//------------------------------------------------------------
+
+    void display() {
+        if (head == nullptr) {
+            cout << "List is empty" << endl;
+            return;
+        }
+
+        Node *temp = head;
+
+        while (temp != nullptr) {
+            cout << temp->data;
+            if (temp->next != nullptr) {
+                cout << " -> ";
+            }
+            temp = temp->next;
+        }
+        cout << endl;
+    }
+};
+//------------------------------------------------------------
+//------------------------------------------------------------
+int main() {
+    Dll d;
+    d.insertAtHead(10);
+    d.insertAtHead(20);
+    d.insertAtHead(30);
+    d.display();
+
+    d.insertAtTail(40);
+    d.display();
+
+    d.insertAtpos(25, 2);
+    d.display();
+
+    d.deleteAtHead();
+    d.display();
+
+    d.deleteAtval(25);
+    d.display();
+
+    return 0;
+}
+
