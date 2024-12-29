@@ -1,0 +1,92 @@
+
+#include<iostream>
+using namespace std;
+
+class Node{
+public:
+    int data;
+    Node * next;
+
+    Node(int data)
+    {
+        this->data=data;
+        this->next=nullptr;
+    }
+
+};
+
+class Stackll
+{
+    public:
+    Node * top;
+    Stackll()
+    {
+        this->top=nullptr;
+    }
+
+
+    void insertAtTop(int val)
+    {
+        Node *n=new Node(val);
+
+        if(top==nullptr)
+        {
+            top=n;
+            return;
+        }
+        n->next=top;
+        top=n;
+    }
+
+
+    void deleteAtTop()
+    {
+        Node * todelete=top;
+
+        if(top==nullptr)
+        {
+            cout<<"list is empty"<<endl;
+            return;
+        }
+        top=top->next;
+        delete todelete;
+    }
+
+    void display()
+    {
+        Node *temp=top;
+        if(top==nullptr)
+        {
+            cout<<"list is empty"<<endl;
+            return;
+        }
+        while(temp!=nullptr)
+        {
+            cout<<temp->data;
+            temp=temp->next;
+            cout<<"->";
+
+        }
+      cout<<"null"<<endl;
+    }
+
+};
+
+int main()
+{
+    Stackll s;
+    cout<<"insert at top"<<endl;
+    s.insertAtTop(23);
+    s.insertAtTop(24);
+    s.insertAtTop(25);
+    s.insertAtTop(26);
+    s.insertAtTop(27);
+    s.display();
+    
+    cout<<endl;
+    cout<<"delete at top"<<endl;
+    s.deleteAtTop();
+    s.display();
+    
+    return 0;
+}
