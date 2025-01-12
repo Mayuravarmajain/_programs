@@ -1,0 +1,36 @@
+class BinarySearch {
+    public int binarySearch(int arr[], int target) {
+        int start = 0;
+        int end = arr.length - 1;
+
+        while (start <= end) { // Include equality to check all elements
+            int mid = (start + end) / 2;
+
+            if (arr[mid] == target) {
+                return mid; // Target found
+            } else if (arr[mid] < target) {
+                start = mid + 1; // Search in the right half
+            } else {
+                end = mid - 1; // Search in the left half
+            }
+        }
+        return -1; // Target not found
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        BinarySearch bs = new BinarySearch();
+
+        int[] arr = {2, 3, 4, 5, 6, 7, 89, 99}; // Sorted array
+        int target = 89;
+
+        int result = bs.binarySearch(arr, target);
+
+        if (result != -1) {
+            System.out.println("Element is found successfully at position: " + result);
+        } else {
+            System.out.println("Element is not found");
+        }
+    }
+}
