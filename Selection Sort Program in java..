@@ -1,0 +1,47 @@
+// Selection sort algoritham program in java programming language.........
+import java.util.Scanner;
+class Main {
+    //function for the sort the array
+    public static void Selection(int[] arr)
+    {
+        int n=arr.length;
+        //find the minimum array element traverse the full arrya.......
+        for( int i = 0; i < n-1; i++)
+        {
+            int min=i;
+            
+            for (int j = i+1; j < n; j++)
+            {
+                if(arr[j]< arr[min])
+                {
+                    min= j;
+                }
+            }
+            //swap the array elements.......
+            int temp= arr[min];
+            arr[min]= arr[i];
+            arr[i]=temp;
+        }
+    }
+    public static void main(String[] args) {
+       // tacking the input from te user using the Scanner Class................
+        Scanner sc =new Scanner(System.in);
+       System.out.println("Enter the number of elemnts in array :: ");
+        int n=sc.nextInt();
+        int[] arr = new int[n];
+        System.out.println("Enter the"+n+"elements for array");
+        for(int j=0;j<n;j++)
+        {
+             arr[j]=sc.nextInt();
+        }
+        //function calling...........................
+        Selection(arr);
+        
+        //Printing the sorted output.....................
+        System.out.println("sorted array");
+        for( int ele:arr)
+        {
+            System.out.print(ele+" ");
+        }
+    }
+}
