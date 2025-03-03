@@ -1,0 +1,27 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+def is_prime(n):
+    """Check if a number is prime."""
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def nth_alice_choice(n):
+    """Finds the N-th term in Alice's choice sequence."""
+    count = 0
+    num = 2  # Start from the first prime number
+
+    while count < n:
+        if is_prime(num):
+            count += 1
+            if count == n:
+                return num ** 2
+        num += 1
+
+# Input reading
+N = int(input().strip())
+
+# Compute and print the result
+print(nth_alice_choice(N))
