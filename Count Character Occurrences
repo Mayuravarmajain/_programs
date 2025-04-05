@@ -1,0 +1,16 @@
+# Write the sum_of_occurrences function here
+def sum_of_occurrences(str1, str2):
+    freq_map = {}
+    for ch in str1:
+        freq_map[ch] = freq_map.get(ch, 0) + 1
+    unique_chars = set(str2)
+    total = 0
+    for ch in unique_chars:
+        total += freq_map.get(ch, 0)
+    return total
+
+t = int(input()) 
+for _ in range(t):
+    str1 = input().strip()  
+    str2 = input().strip() 
+    print(sum_of_occurrences(str1, str2))
